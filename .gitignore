@@ -1,0 +1,8 @@
+# Doxygen files
+*/html/
+*/latex/
+*/Doxyfile*
+
+*.zip
+
+*.out
