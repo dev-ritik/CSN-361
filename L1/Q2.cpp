@@ -25,28 +25,28 @@ using namespace std;
  *  @param argc Count of the arguments
  *  @param argv Array of parameters
  */
-main(int argc,char **argv){
+main(int argC,char **argv){
 
-    if(argc != 2){
+    if(argC != 2){
 	    fprintf(stderr,"usage: <command> <devicename>\n");
 	    exit(1);
     }
 
 	unsigned char uc_Mac[32]={0};
 
-	int fd;
+	int fed;
 	struct ifreq ifr;
 	char *iface = argv[1];
 	char *mac;
 	
-	fd = socket(AF_INET, SOCK_DGRAM, 0);
+	fed = socket(AF_INET, SOCK_DGRAM, 0);
 
 	ifr.ifr_addr.sa_family = AF_INET;
 	strncpy((char *)ifr.ifr_name , (const char *)iface , IFNAMSIZ-1);
 
-	ioctl(fd, SIOCGIFHWADDR, &ifr);
+	ioctl(fed, SIOCGIFHWADDR, &ifr);
 
-	close(fd);
+	close(fed);
 
 	printf("MAC Address for the device %s : %02x:%02x:%02x:%02x:%02x:%02x\n", argv[1],
 	  (unsigned char) ifr.ifr_hwaddr.sa_data[0],
